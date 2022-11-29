@@ -5,7 +5,7 @@ Simple Task Manager
 
 First clone this repository.
 ```bash
-$ git clone https://github.com/kabirbaidhya/react-todo-app.git
+$ git clone https://github.com/piyush2311/task-manager.git
 ```
 
 Go to api folder
