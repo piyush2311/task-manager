@@ -1,0 +1,417 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Simple Task Manager API",
+    "description": "This is the API documentation for the Simple Task Manager.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3004",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Node swagger api explorer",
+      "description": "API for in the system"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions:": {
+    "Bearer": {
+      "type": "http",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Login into the system",
+        "description": "Login into the system and retrieve the authorization token using your name and your apiKey (that you received from the recruiter).",
+        "parameters": [
+          {
+            "name": "tasks",
+            "in": "body",
+            "description": "The name and apiKey that you received from the recruiter",
+            "schema": {
+              "required": [
+                "name",
+                "apiKey"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "uniqueItems": true
+                },
+                "apiKey": {
+                  "type": "string",
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "properties": {
+                "token": {
+                  "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "token": {
+                        "type": "string"
+                      }
+                    },
+                  "example": { "name":  "User Name", "token": "f94b01164ea17050a61e859b"}
+                },
+                "image": {
+                  "type": "string",
+                  "default": "/images/profile.jpg"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          }
+        }
+      },
+      "/tasks": {
+        "put": {
+          "tags": [
+            "Tasks"
+          ],
+          "description": "Edit Task in system",
+          "parameters": [
+            {
+              "name": "profiles",
+              "in": "body",
+              "description": "Task that we want to edit task",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Created Successfully",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/ProfileInfo"
+              }
+            },
+            "400": {
+              "description": "Invalid inputs",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/ApiError"
+              }
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "write:profile",
+                "read:profile"
+              ]
+            }
+          ]
+        }
+      },
+      "/tasks/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of Task that we want to find",
+            "type": "integer"
+          }
+        ],
+        "put": {
+          "summary": "Update Task with give ID",
+          "tags": [
+            "Tasks"
+          ],
+          "parameters": [
+            {
+              "name": "task",
+              "in": "body",
+              "description": "task with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task is updated",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get dashboard data",
+        "description": "Retrieve all dashboard data (tasksCompleted, latestTasks and totalTasks)",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "properties": {
+                "tasksCompleted": {
+                  "type": "number",
+                  "default": 19
+                },
+                "totalTasks": {
+                  "type": "number",
+                  "default": 19
+                },
+                "latestTasks": {
+                  "type": "array",
+                  "items":{
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "completed": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": [{ "name":  "Refactor something", "completed": false}]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          } 
+        },
+        "security": [
+          {
+            "Bearer": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/tasks": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get all Task in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "write:profile",
+              "read:profile"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create Task in system",
+        "description": "Create tasks in system",
+        "parameters": [
+          {
+            "name": "tasks",
+            "in": "body",
+            "description": "Task that we want to create profile",
+            "schema": {
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "default": "Refactor something"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "write:profile",
+              "read:profile"
+            ]
+          }
+        ]
+      }
+    },
+    "/tasks/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the task to update",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update task with give ID",
+        "tags": [
+          "Tasks"
+        ],
+        "parameters": [
+          {
+            "name": "Task",
+            "in": "body",
+            "description": "Task with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns the new task object after editing.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          },
+          "404": {
+            "description": "Not Found. Task was not found."
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "write:profile",
+              "read:profile"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete task with given ID",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. Returns the deleted task object.",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "400": {
+            "description": "Bad Request. Task is marked complete, it cannot be deleted."
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid."
+          },
+          "404": {
+            "description": "Not Found. Task was not found."
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+              "write:profile",
+              "read:profile"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Task": {
+      "required": [
+        "name",
+        "completed"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": "Refactor something"
+        },
+        "completed": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}

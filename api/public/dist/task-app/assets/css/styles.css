@@ -1,0 +1,351 @@
+@charset "utf-8";
+/* CSS Document */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+* {
+  -webkit-font-smoothing: antialiased !important;
+}
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+}
+body {
+  color: #8F9EA2;
+  background-color: #F4F4F6;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 0px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+h1 {
+  font-size: 20px;
+  color: #537178;
+  margin-bottom: 24px;
+}
+h2 {
+  font-size: 20px;
+  color: #537178;
+  margin-bottom: 10px;
+}
+h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+h4 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+h5 {
+  font-size: 16px;
+}
+p {
+  line-height: 24px;
+}
+a {
+  color: #5285EC;
+}
+a, a:focus, a:hover {
+  outline: 0px;
+  text-decoration: none;
+}
+ul {
+  padding: 0px 0 0 18px;
+  margin: 0px;
+}
+li {
+  padding-bottom: 5px;
+}
+img {
+  max-width: 100%;
+}
+button:focus {
+  outline: none;
+}
+.action-primary {
+  display: inline-block;
+  width: 100%;
+}
+.action-primary .btn {
+  display: block;
+}
+.btn-primary {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  padding: 12px 25px;
+  background: #5285EC;
+  border-radius: 8px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-primary:hover {
+  background-color: #2e69df;
+  color: #fff;
+  border-color: #2e69df;
+}
+.btn-secondary {
+  color: #fff;
+  border-color: #31a338;
+  text-transform: capitalize;
+  font-family: 'Josefin Sans', sans-serif;
+  background: #31a338;
+  padding: 7px 20px;
+  clear: both;
+  display: inline-block;
+  min-width: 130px;
+  transition: all linear 1s;
+  font-weight: bold;
+  font-size: 18px;
+}
+.btn-secondary:hover {
+  background-color: #31a338;
+  color: #fff;
+  border-color: #31a338;
+}
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle, .btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show > .btn-secondary.dropdown-toggle:focus {
+  color: #fff;
+  background-color: #31a338;
+  border-color: #31a338;
+  box-shadow: none;
+}
+/********header*************/
+@media (min-width:992px) {
+  .container {
+    max-width: 980px;
+  }
+}
+.login-box {
+  width: 296px;
+  padding: 26px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 12px;
+  margin: 20px auto;
+}
+.form-control {
+  background: #EEF1F8;
+  border-radius: 8px;
+  min-height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  border-color: #EEF1F8;
+}
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+}
+header {
+  padding: 12px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px #00000029;
+  margin-bottom: 22px;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #6D8187;
+}
+.user-image {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 15px;
+}
+.logout-header a {
+  color: #6D8187;
+  font-size: 16px;
+  font-weight: 500;
+}
+.box-bg {
+  background: #FFFFFF;
+  box-shadow: 0px 3px 6px #0000000A;
+  border-radius: 12px;
+  padding: 24px;
+  min-height: 100%;
+}
+.taskno {
+  font-size: 64px;
+  color: #5285EC;
+  font-weight: 500;
+  line-height: 78px;
+}
+.tasktotal {
+  font-size: 20px;
+  color: #8F9EA2;
+}
+.tasklist {
+  display: flex;
+  padding: 25px 0;
+  border-color: #E8E8E8;
+  font-size: 20px;
+  color: #5285EC;
+  font-weight: 500;
+}
+.tasklist:first-child {
+  padding-top: 0;
+}
+.tasklist:last-child {
+  padding-bottom: 0;
+}
+.tasklist-h {
+  flex-grow: 1;
+}
+.form-check-input{
+	float: left;
+	margin-right: 8px;
+	margin-top: 1px;
+}
+.tasklist-h p {
+    display: block;
+    overflow: hidden;
+	margin: 0;
+}
+.tasklist-h .text-decoration-line-through{
+	color: #537178;
+}
+
+.edit-delete a {
+  color: #647278;
+  margin-left: 10px;
+}
+.new-task-btn {
+  padding: 9px 22px;
+}
+.search {
+  position: relative;
+  margin-right: 12px;
+}
+.search input {
+  text-indent: 25px;
+  color: #7A7D7E;
+  background-color: #D9DFEB;
+  border-color: #D9DFEB;
+  width: 244px;
+}
+.search .fa-search {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  color: #647278;
+}
+
+@media(min-width:768px) {
+.no-task-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 94px);
+    min-height: 200px;
+}
+	
+}
+	
+.no-task-box {
+	max-width: 304px;
+	margin: 0 auto;
+	padding: 37px 20px;
+}
+.no-task-box h2{
+	margin-bottom: 20px;
+}
+
+.newtaskmodal .modal-dialog{
+	    max-width: 296px;
+}
+
+.newtaskmodal .modal-content{
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 12px;
+    border: none;
+	
+}
+
+.newtaskmodal .modal-body{
+	padding: 24px;
+}
+.box-inner canvas {
+  width: 170px !important;
+  height: 170px !important;
+  margin: 0 auto;
+}
+.animation-sec{
+  animation: loading 1.7s infinite linear;
+        background: #dedfe1;
+  background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+  background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+        background-repeat: no-repeat;
+        height: 20px;
+        width: 100%;
+        margin-bottom: 4px;
+        max-width: 400px;
+}
+@keyframes loading {
+  0% {
+    background-position: -150px;
+  }
+
+  100% {
+     background-position: 300px;
+  }
+}
+
+@media (max-width:767px) {
+.edit-delete {
+    white-space: nowrap;
+    font-size: 17px;
+}
+	.task-block{
+		text-align: center;
+	}
+.search {
+    margin-right: 0;
+}	
+.search input {
+   margin-bottom: 8px;
+    width: 100%;
+}	
+.task-block .new-task-btn {
+    width: 100%;
+}	
+.newtaskmodal .modal-dialog {
+    max-width: 296px;
+    margin: 20px auto;
+    min-height: 100px;
+    margin-top: 96px;
+	padding: 0 10px;
+}
+}
+@media (max-width:480px) {
+.login-box {
+    width: 100%;
+}
+.no-task-box {
+	max-width: 100%;	
+}
+.newtaskmodal .modal-dialog {
+    max-width: 100%;
+}
+}
+
+
+
+
+
+
+
+
+

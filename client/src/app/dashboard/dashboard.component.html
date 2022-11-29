@@ -1,0 +1,97 @@
+<app-header></app-header>
+<section class="pb-4" *ngIf="dashboardData?.latestTasks && dashboardData?.latestTasks.length > 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="box-bg">
+          <h2>Tasks Completed</h2>
+
+          <div class="box-inner" *ngIf="dashboardData"> <span class="taskno">{{dashboardData.tasksCompleted}}</span> <span class="tasktotal">/
+              {{dashboardData.totalTask}}</span> </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="box-bg">
+          <h2>Latest Created Tasks</h2>
+          <div class="box-inner">
+            <ul *ngIf="dashboardData">
+              <li [ngClass]="{'text-decoration-line-through': task.completed}" *ngFor="let task of dashboardData.latestTasks">{{task.name}} </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="box-bg">
+          <div class="box-inner text-center" *ngIf="dashboardData">
+            <!-- <img class="img-fluid" src="assets/images/completed-task.jpg"
+              alt="completed-task"> -->
+            <canvas [type]="pieChartType" [data]="pieChartData" baseChart height="150px">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-4">
+      <div class="col-md-4 task-block">
+        <h2>Task</h2>
+      </div>
+      <div class="col-md-8 task-block">
+        <div class="d-md-flex justify-content-end align-items-center">
+          <div class="search">
+            <i class="fa fa-search"></i>
+            <input type="text" class="form-control" [(ngModel)]="query" placeholder="Search by task name">
+
+          </div>
+          <button type="submit" class="btn btn-primary new-task-btn" (click)="addTaskDialog()">+ New Task</button>
+        </div>
+      </div>
+      <div class="col-sm-12 mt-3 mb-5">
+        <div class="box-bg">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item tasklist" *ngFor="let task of taskList | searchFilter: query;let idx = index;">
+              <div class="tasklist-h">
+                <input class="form-check-input" type="checkbox" [checked]="task.completed"
+                  (change)="completTask(idx,task.completed)">
+                <p [ngClass]="{'text-decoration-line-through': task.completed}"> {{task.name}}</p>
+              </div>
+              <span class="edit-delete"> <a href="javascript:void(0)" (click)="updateTaskDialog(task)"><img src="assets/images/edit-icon.png"></a>
+                <a href="javascript:void(0)" (click)="openDeleteDailog(content,task._id, idx)"><img src="assets/images/delete-icon.png"></a></span>
+            </li>
+            <li class="list-group-item" *ngIf="taskList && taskList.length < 0 &&  isShow"><div class="animation-sec"></div><div class="animation-sec"></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-4 no-task-page" *ngIf="taskList && taskList.length == 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="box-bg text-center no-task-box">
+          <h2>You have no task.</h2>
+          <button class="btn btn-primary new-task-btn" (click)="addTaskDialog()">+ New Task</button>
+        </div>
+      </div>      
+    </div>
+ 
+  </div>
+</section>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete the task?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="d('Cross click')">No</button>
+    <button type="button" class="btn btn-success" (click)="c('yes')">Yes</button>
+  </div>
+</ng-template>
