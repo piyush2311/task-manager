@@ -8,7 +8,12 @@ First clone this repository.
 $ git clone https://github.com/kabirbaidhya/react-todo-app.git
 ```
 
-Go to api folder use commend "cd api"
+Go to api folder
+
+your system.
+```bash
+$ cd api
+```
 
 Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/en/), [`npm`](https://www.npmjs.com/) and MongoDB [`MongoDB`](https://www.mongodb.com/try/download/community) installed in your system.
 ```bash
