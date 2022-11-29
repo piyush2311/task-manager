@@ -10,7 +10,6 @@ $ git clone https://github.com/kabirbaidhya/react-todo-app.git
 
 Go to api folder
 
-your system.
 ```bash
 $ cd api
 ```
