@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3001/api',
+  apiBaseUrl: 'https://task-manager-gjoo.onrender.com/api',
   name: 'peeyush'
 };
 

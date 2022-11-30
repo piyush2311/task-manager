@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://localhost:3001/api',
+  apiBaseUrl: 'https://task-manager-gjoo.onrender.com/api',
   name: 'peeyush'
 };
